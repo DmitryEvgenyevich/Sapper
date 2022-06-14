@@ -142,7 +142,6 @@
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="Console.cpp" />
     <ClCompile Include="sapper.cpp" />
-    <ClCompile Include="mainPage.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Button.h" />

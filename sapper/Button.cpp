@@ -17,8 +17,9 @@ Button::~Button()
 {
 }
 
-void Button::printButton(int x, int y)
+void Button::printButton(int x, int y, ConsoleColor message, ConsoleColor background)
 {
+	setColor(message, background);
 	for (int i{}; i < 3; i++)
 	{	
 		setPosition(x, y);
@@ -33,4 +34,5 @@ void Button::printButton(int x, int y)
 		}
 		y++;
 	}
+	setColor();
 }

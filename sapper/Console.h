@@ -19,7 +19,7 @@ enum KeyboardKeys
 	RightArrow = 77,
 };
 
-void setColor(ConsoleColor, ConsoleColor);
+void setColor(ConsoleColor text = White, ConsoleColor background = Black);
 void setPosition(int, int);
 std::string intToStr(int);
 void SetWindowSize(int, int);
