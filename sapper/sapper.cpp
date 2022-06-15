@@ -2,11 +2,14 @@
 #include <iostream>
 #include "Console.h"
 #include "Button.h"
+#include <vector>
+
+std::vector<Button> buttons;
 
 int main()
 {
-    Button b("Play");
-    b.printButton(0, 0);
-    Button a("Exit");
-    a.printButton(0, 4);
+    Button b("Play", 0, 0);
+    b.printButton();
+    Button a("Exit", 0, 4);
+    a.printButton();
 }

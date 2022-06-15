@@ -8,16 +8,18 @@ Button::Button()
 	text = "";
 }
 
-Button::Button(std::string text_)
+Button::Button(std::string text_, int x_, int y_)
 {
 	text = text_;
+	x = x_;
+	y = y_;
 }
 
 Button::~Button() 
 {
 }
 
-void Button::printButton(int x, int y, ConsoleColor message, ConsoleColor background)
+void Button::printButton(ConsoleColor message, ConsoleColor background)
 {
 	setColor(message, background);
 	for (int i{}; i < 3; i++)

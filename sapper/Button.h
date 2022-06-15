@@ -5,10 +5,12 @@ class Button
 {
 public:
 	Button();
-	Button(std::string);
+	Button(std::string, int, int);
 	~Button();
-	void printButton(int, int, ConsoleColor message = White, ConsoleColor background = Black);
+	void printButton(ConsoleColor message = White, ConsoleColor background = Black);
 
 private:
 	std::string text;
+	int x;
+	int y;
 };
