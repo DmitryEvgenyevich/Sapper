@@ -24,12 +24,18 @@
     <ClCompile Include="Button.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="firstPage.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Console.h">
       <Filter>Исходные файлы</Filter>
     </ClInclude>
     <ClInclude Include="Button.h">
+      <Filter>Исходные файлы</Filter>
+    </ClInclude>
+    <ClInclude Include="firstPage.h">
       <Filter>Исходные файлы</Filter>
     </ClInclude>
   </ItemGroup>
