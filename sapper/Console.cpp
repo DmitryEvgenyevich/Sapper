@@ -24,7 +24,7 @@ std::string intToStr(int num)
 	return ss.str();
 }
 
-void SetWindowSize(int w, int h)
+void setWindowSize(int w, int h)
 {
 	HWND console = GetConsoleWindow();
 	RECT r;

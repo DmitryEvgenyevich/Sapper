@@ -1,8 +1,8 @@
-#include <windows.h>
+#include "Console.h"
+#include "ButtonClass.h"
 #include <iostream>
 #include <conio.h>
-#include "Console.h"
-#include "Button.h"
+#include <vector>
 
 Button::Button()
 {
@@ -40,6 +40,18 @@ void Button::printButton(ConsoleColor message, ConsoleColor background)
 		y_++;
 	}
 	setColor();
+}
+
+void Button::callFun()
+{
+	fun();
+}
+
+void creationButons(std::string text, int x, int y, void(*fun)(), std::vector<Button> &buttons)
+{
+	Button b(text, x, y, fun);
+	b.printButton();
+	buttons.push_back(b);
 }
 
 Button buttonSelection(std::vector<Button> buttons)

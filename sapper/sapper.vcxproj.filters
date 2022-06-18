@@ -21,10 +21,10 @@
     <ClCompile Include="Console.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="Button.cpp">
+    <ClCompile Include="ButtonClass.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="firstPage.cpp">
+    <ClCompile Include="Play.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
@@ -32,10 +32,10 @@
     <ClInclude Include="Console.h">
       <Filter>Исходные файлы</Filter>
     </ClInclude>
-    <ClInclude Include="Button.h">
+    <ClInclude Include="ButtonClass.h">
       <Filter>Исходные файлы</Filter>
     </ClInclude>
-    <ClInclude Include="firstPage.h">
+    <ClInclude Include="Play.h">
       <Filter>Исходные файлы</Filter>
     </ClInclude>
   </ItemGroup>
