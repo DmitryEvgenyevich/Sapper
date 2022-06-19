@@ -1,9 +1,15 @@
 ﻿#include "ButtonClass.h"
+#include "Play.h"
 #include <vector>
 #include <fstream>
 #include <iostream>
 
 std::vector<Button> buttons;
+
+int** field;
+int H;
+int W;
+int B;
 
 void buttonPlay()
 {
@@ -15,38 +21,45 @@ void buttonExit()
 	exit(1);
 }
 
-void levelEasy()
+void buttonLevelEasy()
 {
-	std::ofstream fout;
-	fout.open("Easy.lvl");
+	//fout.open("Easy.lvl");
+	//if (!fout)
+	//{
+	//	std::cerr << "File open failed...";
+	//	exit(1);
+	//}
+	//fout << "5 16 10";
+	
+	field = createField(5, 16, 10);
+	H = 8;
+	W = 10;
+	B = 10;
+	field = createField(H, W, B);
 
-	if (!fout)
-	{
-		std::cerr << "File open failed...";
-		exit(1);
-	}
-
-	fout << "5 16 10";
 }
 
-void levelNormal()
+void buttonLevelNormal()
 {
-	std::ofstream fout;
-	fout.open("Normal.lvl");
-
-	if (!fout)
-	{
-		std::cerr << "File open failed...";
-		exit(1);
-	}
-
-	fout << "9 28 40";
+	//fout.open("Normal.lvl");
+	//if (!fout)
+	//{
+	//	std::cerr << "File open failed...";
+	//	exit(1);
+	//}
+	//fout << "9 28 40";
+	
+	field = createField(9, 28, 40);
+	H = 14;
+	W = 18;
+	B = 40;
+	field = createField(H, W, B);
+	
 }
 
-void levelHard()
+void buttonLevelHard()
 {
-	std::ofstream fout;
-	fout.open("Hard.lvl");
+	/*fout.open("Hard.lvl");
 
 	if (!fout)
 	{
@@ -54,7 +67,11 @@ void levelHard()
 		exit(1);
 	}
 
-	fout << "9 28 40";
+	fout << "12 40 99";*/
+	H = 20;
+	W = 24;
+	B = 90;
+	field = createField(H, W, B);
 }
 
 Button startFirstPage()
@@ -69,13 +86,21 @@ Button startFirstPage()
 
 Button startSecondPage()
 {
-	creationButons("Easy", 0, 0, levelEasy, buttons);
-	creationButons("Normal", 0, 4, levelNormal, buttons);
-	creationButons("Hard", 0, 8, levelHard, buttons);
+	creationButons("Easy", 0, 0, buttonLevelEasy, buttons);
+	creationButons("Normal", 0, 4, buttonLevelNormal, buttons);
+	creationButons("Hard", 0, 8, buttonLevelHard, buttons);
 	Button pressedB = buttonSelection(buttons);
 	buttons.clear();
 	system("cls");
 	return pressedB;
+}
+
+void logicGame()
+{
+	int x, y;
+	setPosition(0, 0);
+	printFieled(H, W, x, y);
+	getPresButton(H, W, x, y);
 }
 
 int main()
@@ -88,6 +113,6 @@ int main()
 		pressedB = startSecondPage();
 		pressedB.callFun();
 
-
+		logicGame();
 	}
 }
