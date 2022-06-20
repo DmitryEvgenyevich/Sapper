@@ -1,10 +1,19 @@
 #pragma once
 #include <iostream>
 
-int** createField(int, int, int);
+class Field
+{
+public:
+	void printField(int x, int y);
+	void setField(int h_, int w_, int bomb_);
+	void getPresButton();
 
-void printArr(int** arr, int h, int w);
-
-void printFieled(int h, int w, int& x, int& y);
-
-void getPresButton(int h, int w, int& x, int& y);
+private:
+	int h;
+	int w;
+	int bomb;
+	int** field;
+	void createField();
+	void NumForField();
+	int wForPrintField;
+};

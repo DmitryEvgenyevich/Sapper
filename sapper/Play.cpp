@@ -5,17 +5,7 @@
 #include "Console.h"
 #include "Play.h"
 
-void printArr(int** arr, int h, int w)
-{
-	for (int i{}; i < h; i++)
-	{
-		for (int j{}; j < w; j++)
-			std::cout << arr[i][j];
-		std::cout << '\n';
-	}
-}
-
-int** printNumForFiled(int** field, int h, int w)
+void Field::NumForField()
 {
 	for (int i{}; i < h; i++)
 	{
@@ -36,14 +26,13 @@ int** printNumForFiled(int** field, int h, int w)
 			}
 		}
 	}
-	return field;
 }
 
-int** createField(int h, int w, int bomb)
+void Field::createField()
 {
 	int x, y;
 
-	int **field = new int*[h];
+	field = new int* [h];
 	for (int i{}; i < h; i++)
 		field[i] = new int[w] {};
 
@@ -59,14 +48,26 @@ int** createField(int h, int w, int bomb)
 
 	std::cout << "\n";
 
-	return printNumForFiled(field, h, w);
+	Field::NumForField();
 }
 
-void printFieled(int h, int w, int& x, int& y)
+void Field::setField(int h_, int w_, int bomb_)
 {
-	for (int i{}; i < w * 3 + 2; i++)
+	h = h_;
+	w = w_;
+	bomb = bomb_;
+	wForPrintField = w * 3 + 2;
+	Field::createField();
+}
+
+void Field::printField(int x, int y)
+{
+	setPosition(x, y);
+
+	for (int i{}; i < wForPrintField; i++)
 		std::cout << "*";
 	std::cout << '\n';
+
 	for (int i{}; i < h; i++)
 	{
 		for (int j{}; j < w + 2; j++)
@@ -78,17 +79,18 @@ void printFieled(int h, int w, int& x, int& y)
 		}
 		std::cout << '\n';
 	}
-	
-	for (int i{}; i < w * 3 + 2; i++)
+
+	for (int i{}; i < wForPrintField; i++)
 		std::cout << "*";
 
-	x = 2;
-	y = 1;
-	setPosition(x, y);
+	setPosition(x + 2, y + 1);
 }
 
-void getPresButton(int h, int w, int& x, int& y)
+void Field::getPresButton()
 {
+	int x{ getPositionX() };
+	int y{ getPositionY() };
+	int i{}, j{};
 	while (true)
 	{
 		switch (_getch())
@@ -96,29 +98,68 @@ void getPresButton(int h, int w, int& x, int& y)
 		case KeyboardKeys::UpArrow:
 		{
 			if (y > 1)
+			{
 				setPosition(x, --y);
+				--i;
+			}
 			break;
 		}
 		case KeyboardKeys::DownArrow:
 		{
 			if (y < h)
+			{
 				setPosition(x, ++y);
+				++i;
+			}
 			break;
 		}
 	
 		case KeyboardKeys::LeftArrow:
 		{
 			if (x > 1)
+			{
 				setPosition(x -= 3, y);
+				--j;
+			}
 			break;
 		}
 
 		case KeyboardKeys::RightArrow:
 		{
-			if (x < w*3-1)
+			if (x < w * 3 - 1)
+			{
 				setPosition(x += 3, y);
+				++j;
+			}
 			break;
 		}
+
+		case KeyboardKeys::Space:
+		{
+			if (field[i][j] != 7)
+			{
+				field[i][j] = 7;
+				std::cout << "&";
+			}
+			else if (field[i][j] == 7)
+			{
+				field[i][j] = 0;
+				std::cout << " ";
+			}
+			setPosition(x, y);
+			break;		
+		}
+
+		case KeyboardKeys::escape:
+		{
+
+		}
+
+		case KeyboardKeys::Enter:
+		{
+			
+		}
+
 		default:
 			break;
 		}

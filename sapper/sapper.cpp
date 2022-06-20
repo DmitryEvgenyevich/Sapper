@@ -6,10 +6,7 @@
 
 std::vector<Button> buttons;
 
-int** field;
-int H;
-int W;
-int B;
+Field fieldOfPlay;
 
 void buttonPlay()
 {
@@ -23,55 +20,17 @@ void buttonExit()
 
 void buttonLevelEasy()
 {
-	//fout.open("Easy.lvl");
-	//if (!fout)
-	//{
-	//	std::cerr << "File open failed...";
-	//	exit(1);
-	//}
-	//fout << "5 16 10";
-	
-	field = createField(5, 16, 10);
-	H = 8;
-	W = 10;
-	B = 10;
-	field = createField(H, W, B);
-
+	fieldOfPlay.setField(8, 10, 10);
 }
 
 void buttonLevelNormal()
 {
-	//fout.open("Normal.lvl");
-	//if (!fout)
-	//{
-	//	std::cerr << "File open failed...";
-	//	exit(1);
-	//}
-	//fout << "9 28 40";
-	
-	field = createField(9, 28, 40);
-	H = 14;
-	W = 18;
-	B = 40;
-	field = createField(H, W, B);
-	
+	fieldOfPlay.setField(14, 18, 40);
 }
 
 void buttonLevelHard()
 {
-	/*fout.open("Hard.lvl");
-
-	if (!fout)
-	{
-		std::cerr << "File open failed...";
-		exit(1);
-	}
-
-	fout << "12 40 99";*/
-	H = 20;
-	W = 24;
-	B = 90;
-	field = createField(H, W, B);
+	fieldOfPlay.setField(20, 24, 90);
 }
 
 Button startFirstPage()
@@ -99,8 +58,12 @@ void logicGame()
 {
 	int x, y;
 	setPosition(0, 0);
-	printFieled(H, W, x, y);
-	getPresButton(H, W, x, y);
+	fieldOfPlay.printField(0, 0);
+	while (1)
+	{
+		fieldOfPlay.getPresButton();
+	}
+	
 }
 
 int main()
