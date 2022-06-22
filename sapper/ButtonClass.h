@@ -2,6 +2,9 @@
 #include "Console.h"
 #include <string>
 #include <vector>
+#include <windows.h>
+#include <iostream>
+#include <conio.h>
 
 /*Класс описывающий кнопку*/
 class Button
@@ -46,7 +49,7 @@ private:
 /*	Перемещение между кнопками
 		1: массви из "Button"
 */
-Button buttonSelection(std::vector<Button>);
+Button buttonSelection(std::vector<Button>&);
 
 /*Создание кнопки и занисение его в массив*/
 void creationButons(std::string, int, int, void(*fun)(), std::vector<Button>&);

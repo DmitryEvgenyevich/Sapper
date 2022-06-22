@@ -1,8 +1,6 @@
-#include "Console.h"
 #include "ButtonClass.h"
-#include <iostream>
-#include <conio.h>
-#include <vector>
+
+#pragma comment(lib, "winmm.lib")
 
 Button::Button()
 {
@@ -54,7 +52,7 @@ void creationButons(std::string text, int x, int y, void(*fun)(), std::vector<Bu
 	buttons.push_back(b);
 }
 
-Button buttonSelection(std::vector<Button> buttons)
+Button buttonSelection(std::vector<Button> &buttons)
 {
 	int num{};
 	while (true)
@@ -72,19 +70,28 @@ Button buttonSelection(std::vector<Button> buttons)
 		{	
 			buttons[num].printButton();
 			num--;
+			PlaySound(TEXT("Step.wav"), NULL, SND_ASYNC);
 			break;
 		}
 		case KeyboardKeys::DownArrow:
 		{
 			buttons[num].printButton();
 			num++;
+			PlaySound(TEXT("Step.wav"), NULL, SND_ASYNC);
 			break;
 		}
 		case KeyboardKeys::Enter:
-			return buttons[num];
+		{	
+			Button b = buttons[num];
+			buttons.clear();
+			PlaySound(TEXT("EnterMenu.wav"), NULL, SND_ASYNC);
+			system("cls");
+			return b;
+		}
 		default:
 			break;
 		}
 		
+
 	}
 }

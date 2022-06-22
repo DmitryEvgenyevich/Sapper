@@ -3,15 +3,13 @@
 #include <vector>
 #include <fstream>
 #include <iostream>
+#include <mmsystem.h>
+
+
 
 std::vector<Button> buttons;
 
 Field fieldOfPlay;
-
-void buttonPlay()
-{
-	return;
-}
 
 void buttonExit()
 {
@@ -33,49 +31,26 @@ void buttonLevelHard()
 	fieldOfPlay.setField(20, 24, 90);
 }
 
-Button startFirstPage()
+void buttonPlay()
 {
-	creationButons("Play", 0, 0, buttonPlay, buttons);
-	creationButons("Exit", 0, 4, buttonExit, buttons);
-	Button pressedB = buttonSelection(buttons);
-	buttons.clear();
-	system("cls");
-	return pressedB;
-}
-
-Button startSecondPage()
-{
-	creationButons("Easy", 0, 0, buttonLevelEasy, buttons);
-	creationButons("Normal", 0, 4, buttonLevelNormal, buttons);
-	creationButons("Hard", 0, 8, buttonLevelHard, buttons);
-	Button pressedB = buttonSelection(buttons);
-	buttons.clear();
-	system("cls");
-	return pressedB;
-}
-
-void logicGame()
-{
-	int x, y;
-	setPosition(0, 0);
-	fieldOfPlay.printField(0, 0);
-	while (1)
-	{
-		fieldOfPlay.getPresButton();
-	}
-	
+	creationButons("Easy", 31, 5, buttonLevelEasy, buttons);
+	creationButons("Normal", 30, 9, buttonLevelNormal, buttons);
+	creationButons("Hard", 31, 13, buttonLevelHard, buttons);
+	buttonSelection(buttons).callFun();
 }
 
 int main()
 {
+	srand(time(0));
+	rand();
 	while (true)
 	{
-		Button pressedB = startFirstPage();
-		pressedB.callFun();
-		
-		pressedB = startSecondPage();
-		pressedB.callFun();
-
-		logicGame();
+		setPosition(32, 3);
+		std::cout << "SAPPER";
+		creationButons("Play", 31, 5, buttonPlay, buttons);
+		creationButons("Exit", 31, 9, buttonExit, buttons);
+		buttonSelection(buttons).callFun();		
+		fieldOfPlay.printField(20, 10);
+		fieldOfPlay.Play();
 	}
 }
